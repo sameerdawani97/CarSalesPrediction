@@ -57,7 +57,7 @@ def make_prediction(input_data):
     # prediction = model.predict(preprocessed_data)
     # st.write(preprocessed_data)
     # return prediction
-    return
+    return 25000
 
 # Streamlit app
 def main():
@@ -131,6 +131,8 @@ def main():
         st.write(input_data)
         # Make prediction
         prediction = make_prediction(input_data)
+
+        st.write(f"Estimated price of car is {prediction}")
 
         # Display prediction
         # st.write('Prediction:', prediction)
