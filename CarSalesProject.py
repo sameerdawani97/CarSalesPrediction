@@ -149,8 +149,23 @@ def main():
 
         # st.table(df.set_index('State', drop=True))
         
-        st.write(df.to_html(index=False), unsafe_allow_html=True)
+        st.write(df.to_html(index=False))
 
+        html_table = df.to_html(index=False)
+        styled_html_table = f"""
+        <style>
+            table {{
+                width: 50%; /* Adjust width as needed */
+                margin-left: auto;
+                margin-right: auto;
+            }}
+            th, td {{
+                text-align: center;
+            }}
+        </style>
+        {html_table}
+        """
+        
         # Display prediction
         # st.write('Prediction:', prediction)
 
