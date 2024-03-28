@@ -147,7 +147,7 @@ def main():
 
         df["Price"] = df["Price"].map("${:,.0f}".format)
 
-        st.table(df.set_index('State'))
+        st.table(df.set_index('State', drop=True))
 
         # Display prediction
         # st.write('Prediction:', prediction)
