@@ -7,6 +7,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    
 # Load the prediction model
 model = joblib.load('car_price_model.joblib')
 
@@ -61,6 +64,7 @@ def make_prediction(input_data):
 
 # Streamlit app
 def main():
+
     default_text = """
         <h3 style='text-align: center;'>Welcome to the Car Price Estimation App!</h3>
         <h3 style='text-align: center;'>Please enter the required information and click the predict button to proceed.</h3>
@@ -74,6 +78,7 @@ def main():
     # st.title('Prediction App')
     st.markdown("<h1 style='text-align: center;'>Car Sales Price Prediction</h1>", unsafe_allow_html=True)
 
+    
     prediction_placeholder = st.empty()
     prediction_placeholder.write(default_text, unsafe_allow_html=True)
 
@@ -186,6 +191,6 @@ def main():
     
         # Display prediction
         # st.write('Prediction:', prediction)
-
+    
 if __name__ == "__main__":
     main()
