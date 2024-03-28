@@ -29,7 +29,7 @@ colors = ['white', 'gray', 'black', 'red', 'silver', 'brown', 'beige', 'blue', '
 interiors = ['black', 'beige', 'tan', 'brown', 'gray', '—', 'burgundy', 'white', 'silver', 'off-white', 'blue', 'red', 'yellow', 'green', 'purple', 'orange', 'gold']
 
 # Load car data from CSV file
-@st.cache_data
+@st.cache
 def load_car_data():
     # Load car data from CSV file
     car_data = pd.read_csv('car_data.csv')
