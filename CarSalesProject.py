@@ -57,13 +57,13 @@ def make_prediction(input_data):
     # prediction = model.predict(preprocessed_data)
     # st.write(preprocessed_data)
     # return prediction
-    return 25000
+    return 25000, 180
 
 # Streamlit app
 def main():
     default_text = """
         <h3 style='text-align: center;'>Welcome to the Car Price Estimation App!</h3>
-        <h3 style='text-align: center;'>Please enter the required information and click the button to proceed.</h3>
+        <h3 style='text-align: center;'>Please enter the required information and click the predict button to proceed.</h3>
         """
 
     # Load car data
@@ -151,12 +151,12 @@ def main():
         prediction_placeholder.write("<h3 style='text-align: center;'>Please wait while we calculate the estimated price...</h3>", unsafe_allow_html=True)
 
         # Make prediction
-        prediction = make_prediction(input_data)
+        pricePrediction, premiumPrediction = make_prediction(input_data)
 
         import time
         time.sleep(2) 
         
-        prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car is ${prediction}</h3>", unsafe_allow_html=True)
+        prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car is ${pricePrediction}</h3>\n<h3 style='text-align: center;'>Estimated premium of car is ${premiumPrediction}</h3>", unsafe_allow_html=True)
 
         st.write("<h6 style='text-align: center;'>Following are the car prices in different states:</h6>", unsafe_allow_html=True)
        
