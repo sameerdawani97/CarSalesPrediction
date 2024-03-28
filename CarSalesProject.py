@@ -145,7 +145,9 @@ def main():
 
         df = pd.DataFrame(list(car_prices.items()), columns=["State", "Price"])
 
-        st.table(df.style.set_properties(**{'text-align': 'center'}).format({"Price": "${:,.0f}"}).hide_index())
+        df["Price"] = df["Price"].map("${:,.0f}".format)
+
+        st.table(df)
 
         # Display prediction
         # st.write('Prediction:', prediction)
