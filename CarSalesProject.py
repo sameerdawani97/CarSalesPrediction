@@ -61,12 +61,21 @@ def make_prediction(input_data):
 
 # Streamlit app
 def main():
+    default_text = """
+        <h3 style='text-align: center;'>Welcome to the Car Price Estimation App!</h3>
+        <h3 style='text-align: center;'>Please enter the required information and click the button to proceed.</h3>
+        """
+
     # Load car data
     # car_data = st.cache_data(load_car_data)()
+
     car_data = load_car_data()
 
     # st.title('Prediction App')
     st.markdown("<h1 style='text-align: center;'>Car Sales Price Prediction</h1>", unsafe_allow_html=True)
+
+    prediction_placeholder = st.empty()
+    prediction_placeholder.write(default_text, unsafe_allow_html=True)
 
     # Define input widgets
     st.sidebar.header('Input Parameters')
@@ -106,6 +115,7 @@ def main():
     # Define input widget for range selection
     condition = st.sidebar.slider('Select condition:', 1, 10, 1)
 
+    
     # Display prediction
     # st.write('Prediction:', 25000)
 
@@ -128,44 +138,52 @@ def main():
             'saleday': [selling_day],
             "odometer" :[odometer]
         })
-        st.write(input_data)
+        # st.write(input_data)
+        
+        car_prices_premium = {
+            "California": {"Price": 30000, "Premium": 200},
+            "New York": {"Price": 28000, "Premium": 150},
+            "Texas": {"Price": 26000, "Premium": 180},
+            "Florida": {"Price": 27000, "Premium": 170}
+        }
+
+        
+        prediction_placeholder.write("<h3 style='text-align: center;'>Please wait while we calculate the estimated price...</h3>", unsafe_allow_html=True)
+
         # Make prediction
         prediction = make_prediction(input_data)
 
+        import time
+        time.sleep(2) 
+        
+        prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car is ${prediction}</h3>", unsafe_allow_html=True)
 
-        car_prices = {
-            "California": 30000,
-            "New York": 28000,
-            "Texas": 26000,
-            "Florida": 27000
-        }
-        st.write(f"Estimated price of car is {prediction}")
+        st.write("<h6 style='text-align: center;'>Following are the car prices in different states:</h6>", unsafe_allow_html=True)
+       
 
-        st.write("\nFollowing are the car prices in different states:")
+        df = pd.DataFrame(car_prices_premium).T.reset_index()
 
-        df = pd.DataFrame(list(car_prices.items()), columns=["State", "Price"])
+        df.columns = ["State", "Price", "Premium"]
 
         df["Price"] = df["Price"].map("${:,.0f}".format)
+        df["Premium"] = df["Premium"].map("${:,.0f}".format)
 
         # st.table(df.set_index('State', drop=True))
         
-        st.write(df.to_html(index=False), unsafe_allow_html=True)
+        # st.write(df.to_html(index=False), unsafe_allow_html=True)
 
         html_table = df.to_html(index=False)
         styled_html_table = f"""
-        <style>
-            table {{
-                width: 50%; /* Adjust width as needed */
-                margin-left: auto;
-                margin-right: auto;
-            }}
-            th, td {{
-                text-align: center;
-            }}
-        </style>
-        {html_table}
+        <div style="display: flex; justify-content: center;">
+            {html_table}
+        </div>
         """
-        
+
+
+        # Display the styled HTML table
+        st.write(styled_html_table, unsafe_allow_html=True)
+
+    
         # Display prediction
         # st.write('Prediction:', prediction)
 
