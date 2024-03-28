@@ -29,6 +29,7 @@ colors = ['white', 'gray', 'black', 'red', 'silver', 'brown', 'beige', 'blue', '
 interiors = ['black', 'beige', 'tan', 'brown', 'gray', '—', 'burgundy', 'white', 'silver', 'off-white', 'blue', 'red', 'yellow', 'green', 'purple', 'orange', 'gold']
 
 # Load car data from CSV file
+@st.cache_data
 def load_car_data():
     # Load car data from CSV file
     car_data = pd.read_csv('car_data.csv')
@@ -62,7 +63,8 @@ def make_prediction(input_data):
 # Streamlit app
 def main():
     # Load car data
-    car_data = st.cache_data(load_car_data)()
+    # car_data = st.cache_data(load_car_data)()
+    car_data = load_car_data()
 
     # st.title('Prediction App')
     st.markdown("<h1 style='text-align: center;'>Car Sales Price Prediction</h1>", unsafe_allow_html=True)
