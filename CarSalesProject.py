@@ -149,7 +149,7 @@ def main():
 
         # st.table(df.set_index('State', drop=True))
         
-        st.write(df.to_html(index=False))
+        st.write(df.to_html(index=False), unsafe_allow_html=True)
 
         html_table = df.to_html(index=False)
         styled_html_table = f"""
