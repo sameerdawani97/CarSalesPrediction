@@ -132,7 +132,20 @@ def main():
         # Make prediction
         prediction = make_prediction(input_data)
 
+
+        car_prices = {
+            "California": 30000,
+            "New York": 28000,
+            "Texas": 26000,
+            "Florida": 27000
+        }
         st.write(f"Estimated price of car is {prediction}")
+
+        st.write("\nFollowing are the car prices in different states:")
+
+        df = pd.DataFrame(list(car_prices.items()), columns=["State", "Price"])
+
+        st.table(df.style.set_properties(**{'text-align': 'center'}).format({"Price": "${:,.0f}"}).hide_index())
 
         # Display prediction
         # st.write('Prediction:', prediction)
