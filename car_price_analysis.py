@@ -87,7 +87,7 @@ def get_odometer_distribution():
 
 
 def showAnalysis():
-    st.title('Car Data Analysis')
+    st.markdown("<h1 style='text-align: center;'>Car Data Analysis</h1>\n", unsafe_allow_html=True)
 
     # Dropdown menu for selecting data analysis
     analysis_type = st.selectbox('Select Analysis', ['Color Distribution', 'Car Make Distribution', 'Interior Distribution', 'Body Type Distribution', 'Condition Distribution', 'Odometer Distribution', 'Selling Price Distribution', 'Feature Importance Analysis'])
