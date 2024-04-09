@@ -88,7 +88,6 @@ def make_prediction_for_other_states(input_data, selected_state):
 def predict():
 
     default_text = """
-        <h3 style='text-align: center;'>Welcome to the Car Price Estimation App!</h3>
         <h3 style='text-align: center;'>Please enter the required information and click the predict button to proceed.</h3>
         """
 
@@ -287,20 +286,7 @@ def predict():
 
         state_prices_df["Price"] = state_prices_df["Price"]
 
-        # st.table(df.set_index('State', drop=True))
-        
-        # st.write(df.to_html(index=False), unsafe_allow_html=True)
 
-        # html_table = state_prices_df.to_html(index=False)
-        # styled_html_table = f"""
-        # <div style="display: flex; justify-content: center;">
-        #     {html_table}
-        # </div>
-        # """
-
-
-        # Display the styled HTML table
-        # st.write(styled_html_table, unsafe_allow_html=True)
     
 if __name__ == "__main__":
     main.main()
