@@ -8,7 +8,7 @@ import home
 def showNavigation():
     with st.sidebar:
         selected = option_menu(
-            menu_title=None,
+            menu_title="Main Menu",
             options= ["Home", "Car Price Prediction", "Data Analysis"],
             icons=["house", "book", "envelope"],
             menu_icon="cast",
