@@ -7,9 +7,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import time
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-import navbar
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -91,7 +89,7 @@ def make_prediction_for_other_states(input_data, selected_state):
 
 # Streamlit app
 def predict():
-        
+
     default_text = """
         <h3 style='text-align: center;'>Welcome to the Car Price Estimation App!</h3>
         <h3 style='text-align: center;'>Please enter the required information and click the predict button to proceed.</h3>
