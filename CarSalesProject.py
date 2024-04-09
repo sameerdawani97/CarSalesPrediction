@@ -144,7 +144,7 @@ def predict():
     odometer = st.sidebar.number_input('Enter Odometer:', min_value=1, help="This refers to the distance travelled by car")
 
     # Define input widget for range selection
-    condition = st.sidebar.slider('Select condition:', 1, 10, 1, help="Condition of the car, 10 being the best condition and 1 being the worst condition")
+    condition = st.sidebar.slider('Select condition:', 1, 50, 1, help="Condition of the car, 50 being the best condition and 1 being the worst condition")
 
     # insurance price section
     insurance_option = st.sidebar.radio("**Would you like to know the insurance premium cost as well?**", ("Yes", "No"), index = 1)
