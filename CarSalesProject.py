@@ -4,6 +4,7 @@ import pandas as pd
 from datetime import datetime
 import time
 import plotly.graph_objects as go
+import main
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -302,4 +303,4 @@ def predict():
         # st.write(styled_html_table, unsafe_allow_html=True)
     
 if __name__ == "__main__":
-    predict()
+    main.main()
