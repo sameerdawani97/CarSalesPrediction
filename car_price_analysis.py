@@ -90,7 +90,7 @@ def showAnalysis():
     st.title('Car Data Analysis')
 
     # Dropdown menu for selecting data analysis
-    analysis_type = st.selectbox('Select Analysis', ['Color Distribution', 'Car Make Distribution', 'Interior Distribution', 'Body Type Distribution', 'Condition Distribution', 'Odometer Distribution', 'Selling Price Distribution'])
+    analysis_type = st.selectbox('Select Analysis', ['Color Distribution', 'Car Make Distribution', 'Interior Distribution', 'Body Type Distribution', 'Condition Distribution', 'Odometer Distribution', 'Selling Price Distribution', 'Feature Importance Analysis'])
 
     # Perform selected data analysis
     if analysis_type == 'Color Distribution':
@@ -114,7 +114,9 @@ def showAnalysis():
     elif analysis_type == 'Selling Price Distribution':
         st.subheader('Selling Price Analysis')
         selling_price_distribution_analysis()
-
+    elif analysis_type == 'Feature Importance Analysis':
+        st.subheader('Feature Importance Analysis')
+        feature_importance_analysis()
 
 # Function for color distribution analysis
 def color_distribution_analysis():
@@ -200,4 +202,32 @@ def selling_price_distribution_analysis():
 
     # Display histogram
     fig = px.histogram(df_filtered, x='sellingprice', title='Distribution of Selling Prices (Less than $100,000)')
+    st.plotly_chart(fig)
+
+
+# Function for feature importance analysis
+def feature_importance_analysis():
+    feature_importances = {
+        'color': 65950.23,
+        'model': 34593.64,
+        'state': 13345.79,
+        'trim': 7261.12,
+        'year': 4355.97,
+        'interior': -5172.95,
+        'condition': 455.95,
+        'make': -2523.52,
+        'odometer': -2388.88,
+        'salemonth': -129.05,
+        'saleyear': -61.09,
+        'saleday': -30.12
+    }
+
+    # Create a DataFrame from the dictionary
+    feature_df = pd.DataFrame(feature_importances.items(), columns=['Features', 'Importance'])
+
+    # Sort the DataFrame by importance
+    feature_df = feature_df.sort_values(by='Importance', ascending=False)
+
+    # Plot the feature importances
+    fig = px.bar(feature_df, x='Features', y='Importance')
     st.plotly_chart(fig)
