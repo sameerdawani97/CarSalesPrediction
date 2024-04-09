@@ -2,10 +2,6 @@ import streamlit as st
 import joblib
 import pandas as pd
 from datetime import datetime
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
 import time
 import plotly.graph_objects as go
 
@@ -305,3 +301,5 @@ def predict():
         # Display the styled HTML table
         # st.write(styled_html_table, unsafe_allow_html=True)
     
+if __name__ == "__main__":
+    predict()
