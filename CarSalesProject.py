@@ -15,7 +15,7 @@ model = joblib.load('car_price_model.joblib')
 preProcessor = joblib.load('car_price_preprocessor1.joblib')
 
 # Load the insurance prediction model
-# model_insurance = joblib.load('smaller_insurance_model.joblib')
+model_insurance = joblib.load('smaller_insurance_model.joblib')
 
 # numeric features
 numeric_features_array = ["year", "condition", "odometer", "saleyear", "salemonth", "saleday"]
@@ -69,9 +69,9 @@ def make_prediction_insurance(input_data_insurance, carPrice):
     input_data_insurance.insert(cylinder_capacity_index + 1, 'Value_vehicle', [carPrice])
 
     # input_data_insurance['Value_vehicle'] = carPrice
-    # predicted_value = model_insurance.predict(input_data_insurance)
+    predicted_value = model_insurance.predict(input_data_insurance)
     # print(input_data_insurance)
-    return 100
+    return predicted_value
     # return predicted_value
 
 def make_prediction_for_other_states(input_data, selected_state):
@@ -225,13 +225,12 @@ def predict():
                 'Vehicle_Age_at_Start_squared' : [vehicleAge*vehicleAge],
                 'Age_Vehicle_Interaction' : [driverAge*vehicleAge],
             })
-            premium = make_prediction_insurance(input_data_insurance, pricePrediction)
-        
+            premium = make_prediction_insurance(input_data_insurance, pricePrediction)[0]
         prices = make_prediction_for_other_states(input_data, state)
 
         time.sleep(2) 
         if premium !=0:
-            prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car in {state} is ${int(pricePrediction[0])}</h3>\n<h3 style='text-align: center;'>Estimated insurance premium of car is ${premium}</h3>\n", unsafe_allow_html=True)
+            prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car in {state} is ${int(pricePrediction[0])}</h3>\n<h3 style='text-align: center;'>Estimated insurance premium of car is ${int(premium)}</h3>\n", unsafe_allow_html=True)
         else:
             prediction_placeholder.write(f"<h3 style='text-align: center;'>Estimated price of car in {state} is ${int(pricePrediction[0])}</h3>\n\n", unsafe_allow_html=True)
         # st.write("<h6 style='text-align: center;'>Following are the car prices in different states:</h6>", unsafe_allow_html=True)

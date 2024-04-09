@@ -10,7 +10,7 @@ def showNavigation():
         selected = option_menu(
             menu_title="Main Menu",
             options= ["Home", "Car Price Prediction", "Data Analysis"],
-            icons=["house", "book", "envelope"],
+            icons=["house", "search", "bar-chart"],
             menu_icon="cast",
             default_index=0,
 
