@@ -2,7 +2,6 @@ streamlit==1.5.0
 pandas==1.3.0
 scikit-learn==0.24.2
 joblib==1.0.1
-plotly
-numpy
-pandas
+streamlit_option_menu==0.3.12
+plotly==5.20.0
 
