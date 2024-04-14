@@ -24,7 +24,7 @@ categorical_features_array = ["make", "model", "trim", "state", "color", "interi
 states = ['ca', 'tx', 'pa', 'mn', 'az', 'wi', 'tn', 'md', 'fl', 'ne', 'nj', 
           'oh', 'mi', 'ga', 'va', 'sc', 'in', 'il', 'co', 'ut', 
           'mo', 'nv', 'ma', 'pr', 'nc', 'ny', 'or', 'la', 'wa', 
-          'hi', 'qc', 'ab', 'on', 'ok', 'ms', 'nm', 'al', 'ns']
+          'hi', 'ok', 'ms', 'nm', 'al']
 
 # Convert states to uppercase
 states_uppercase = [state.upper() for state in states]
@@ -137,7 +137,7 @@ def predict():
     # Define input widget for selling month
     selling_month = st.sidebar.number_input('Enter Selling Month (1-12):', min_value=1, max_value=12, value=1)
     selling_day = st.sidebar.number_input('Enter Selling Day (1-31):', min_value=1, max_value=31, value=1)
-    selling_year = st.sidebar.number_input('Enter Selling Year:', min_value=2000, max_value=current_year, value=current_year)
+    selling_year = st.sidebar.number_input('Enter Selling Year:', min_value=year, max_value=current_year, value=current_year)
 
 
     # Define input widget for odometer
